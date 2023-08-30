@@ -9,6 +9,8 @@ const productsdata = mongoose.Schema({
     marca: String,
     modelo: String,
     cantidad: Number,
+    precio: Number,
+    validacion: String,
     fecharegistro: String,   
     deleted: {type: Boolean, default:false}
 },
