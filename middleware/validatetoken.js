@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const validatetoken = (req, res, next) => {
 
     console.log("ejecutando middleware getprofile");
+    console.log(req);
     const token = req.cookies.MyTokenName;
     console.log(token);
 
