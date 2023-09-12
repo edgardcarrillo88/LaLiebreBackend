@@ -39,7 +39,7 @@ const verify = async (req, res) => {
             return res.json({ message: "Usuario no encontrado" })
         }
 
-        // if(datausers.verificado===false) return res.status(400).json({message: "Usuario no validado"})
+        if(datausers.verificado===false) return res.status(400).json({message: "Usuario no validado"})
 
         const isMatch = await bcrypt.compare(req.body.params.password, datausers.contrasena)
 
@@ -65,7 +65,9 @@ const verify = async (req, res) => {
 
 const profile = async (req, res) => {
     console.log("ejecutando request profile");
+    //console.log(req.user);
     const userfound = await usersmodel.findById(req.user.id)
+    console.log(userfound);
     if(!userfound) res.status(400).json({message: "user not found"})
     return res.json({
         correo: userfound.correo,
