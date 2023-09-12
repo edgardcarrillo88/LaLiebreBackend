@@ -11,8 +11,8 @@ const cookieParser =require('cookie-parser')
 dbconnect(app)
 //app.use(cors())
 app.use(cors({
-    //origin:'http://localhost:3000',
-    origin:'*',
+    origin:'https://master.d30ez5qlm6gnuu.amplifyapp.com',
+    //origin:'*',
     credentials: true}))
 // app.use(cors({
 //     origin: 'http://localhost:3000/', // Reemplaza con el origen correcto de tu frontend
