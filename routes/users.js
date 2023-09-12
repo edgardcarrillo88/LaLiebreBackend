@@ -4,7 +4,7 @@ const usercontroller = require('../controllers/users')
 const validatetoken = require('../middleware/validatetoken')
 
 userrouter.post('/',usercontroller.create)
-userrouter.get('/',usercontroller.verify)
+userrouter.post('/login',usercontroller.verify)
 userrouter.get('/profile',validatetoken, usercontroller.profile)
 
 module.exports = userrouter

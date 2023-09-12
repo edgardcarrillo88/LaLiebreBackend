@@ -34,17 +34,19 @@ const productid = async (req, res) => {
 
 
 const singleregister = async (req, res) => {
-    console.log(req.body);
-    const data = new productsmodel(req.body)
+    const data = new productsmodel(req.body.data)
     data.validacion = "pendiente"
+    data.correo = req.body.user.data.correo
+    data.empresa = req.body.user.data.empresa
     console.log(data);
     await data.save()
     res.status(200).json({ message: "producto registrado" })
 }
 
 const getalldata = async (req, res) => {
+    console.log(req.query.userData.empresa);
     console.log("ejecutando request getalldata");
-    const data = await productsmodel.find({})
+    const data = await productsmodel.find({validacion: 'Si', empresa:req.query.userData.empresa})
     res.status(200).json({ data })
 }
 
@@ -90,6 +92,9 @@ const registerdelivery = async (req, res) => {
             precio: 1,
             programado: "No",
 
+            correo:req.body.user.correo,
+            empresa:req.body.user.empresa,
+
             DireccionDestino: req.body.destino.Direccion,
             NoCasaDestino: req.body.destino.NoCasa,
             NombreDestino: req.body.destino.Nombre,
@@ -109,7 +114,8 @@ const registerdelivery = async (req, res) => {
 
 const getdeliverydata = async (req, res) => {
     console.log("obteniendo lista de envios");
-    const data = await deliverymodel.find({})
+    console.log(req.query.userData.empresa);
+    const data = await deliverymodel.find({programado: 'No'})
     res.status(200).json({ data })
 }
 

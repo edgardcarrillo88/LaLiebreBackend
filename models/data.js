@@ -12,6 +12,8 @@ const productsdata = mongoose.Schema({
     precio: Number,
     validacion: String,
     fecharegistro: String,   
+    correo: String,   
+    empresa: String,   
     deleted: {type: Boolean, default:false}
 },
 {

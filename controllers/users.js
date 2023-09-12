@@ -30,9 +30,8 @@ const create = async (req, res) => {
 
 const verify = async (req, res) => {
     console.log("Ejecutando verificación de usuario");
-    console.log(req.query);
-    const datausers = await usersmodel.findOne({ correo: req.query.email })
-    console.log(datausers);
+    console.log(req.body);
+    const datausers = await usersmodel.findOne({ correo: req.body.params.email })
 
     try {
         if (!datausers) {
@@ -40,7 +39,9 @@ const verify = async (req, res) => {
             return res.json({ message: "Usuario no encontrado" })
         }
 
-        const isMatch = await bcrypt.compare(req.query.password, datausers.contrasena)
+        // if(datausers.verificado===false) return res.status(400).json({message: "Usuario no validado"})
+
+        const isMatch = await bcrypt.compare(req.body.params.password, datausers.contrasena)
 
         if (!isMatch) return res.status(400).json({ message: "Invalid credential" })
 
@@ -67,9 +68,8 @@ const profile = async (req, res) => {
     const userfound = await usersmodel.findById(req.user.id)
     if(!userfound) res.status(400).json({message: "user not found"})
     return res.json({
-        id: userfound._id,
-        email: userfound.correo,
-        user: userfound.usuario
+        correo: userfound.correo,
+        empresa: userfound.empresa
     })
 }
 

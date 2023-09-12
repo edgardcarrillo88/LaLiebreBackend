@@ -26,6 +26,9 @@ const deliverydata = mongoose.Schema({
     FechaDestino: String,
     HoraDestino: String,
 
+    correo: String,
+    empresa: String,
+
     Motorizado: String,
     
     deleted: {type: Boolean, default:false}
