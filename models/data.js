@@ -14,6 +14,7 @@ const productsdata = mongoose.Schema({
     fecharegistro: String,   
     correo: String,   
     empresa: String,   
+    status: String,
     deleted: {type: Boolean, default:false}
 },
 {
