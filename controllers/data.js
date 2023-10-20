@@ -35,10 +35,12 @@ const productid = async (req, res) => {
 
 
 const singleregister = async (req, res) => {
+    console.log("Ejecutando Singe register");
+    console.log(req.body);
     const data = new productsmodel(req.body.data)
     data.validacion = "pendiente"
-    data.correo = req.body.user.data.correo
-    data.empresa = req.body.user.data.empresa
+    data.correo = req.body.user.correo
+    data.empresa = req.body.user.empresa
     console.log(data);
     await data.save()
     res.status(200).json({ message: "producto registrado" })
